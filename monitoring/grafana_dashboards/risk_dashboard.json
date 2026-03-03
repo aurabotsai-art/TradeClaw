@@ -1,0 +1,53 @@
+{
+  "title": "DineTrade - Risk Dashboard",
+  "timezone": "browser",
+  "panels": [
+    {
+      "type": "heatmap",
+      "title": "Correlation Matrix (Open Positions)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "position_correlation",
+          "legendFormat": "{{symbol_i}}-{{symbol_j}}"
+        }
+      ]
+    },
+    {
+      "type": "piechart",
+      "title": "Exposure by Asset Class",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "position_exposure_usd",
+          "legendFormat": "{{asset_class}}"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Portfolio VaR (1-day, 95%)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "portfolio_var_1d_95",
+          "legendFormat": "VaR"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Circuit Breaker Status",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "circuit_breaker_active",
+          "legendFormat": "1 = active"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 38,
+  "version": 1
+}
+

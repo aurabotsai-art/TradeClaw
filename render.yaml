@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: dinetrade-bot
+    env: docker
+    dockerfilePath: deployment/docker/Dockerfile
+    dockerContext: .
+    plan: starter
+    autoDeploy: true
+    healthCheckPath: /metrics
+    envVars:
+      # Set real values in Render dashboard; these are placeholders only.
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: APCA_API_KEY_ID
+        sync: false
+      - key: APCA_API_SECRET_KEY
+        sync: false
+      - key: APCA_API_BASE_URL
+        sync: false
+      - key: FMP_API_KEY
+        sync: false
+      - key: POLYGON_API_KEY
+        sync: false
+      - key: OANDA_API_KEY
+        sync: false
+      - key: OANDA_ACCOUNT_ID
+        sync: false
+      - key: OANDA_ENVIRONMENT
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_INDEX_NAME
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: DAILY_DRAWDOWN_LIMIT_PCT
+        sync: false
+      - key: MAX_RISK_PER_TRADE_PCT
+        sync: false
+      - key: PAPER_MODE
+        sync: false
+      - key: TRADING_ENABLED
+        sync: false
+

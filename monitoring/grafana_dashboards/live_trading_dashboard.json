@@ -1,0 +1,66 @@
+{
+  "title": "DineTrade - Live Trading Dashboard",
+  "timezone": "browser",
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Real-time PnL (USD)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "daily_pnl_usd",
+          "legendFormat": "PnL"
+        }
+      ]
+    },
+    {
+      "type": "gauge",
+      "title": "Daily Drawdown %",
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 5,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": 0 },
+              { "color": "red", "value": 1.5 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "current_drawdown_pct",
+          "legendFormat": "Drawdown %"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Open Positions (symbol, side, entry, last, unrealized PnL)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "trades_total",
+          "legendFormat": "{{symbol}} {{side}}"
+        }
+      ]
+    },
+    {
+      "type": "bargauge",
+      "title": "Orders Placed (last 24h)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "sum(increase(trades_total[24h])) by (symbol, side)",
+          "legendFormat": "{{symbol}} {{side}}"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 38,
+  "version": 1
+}
+

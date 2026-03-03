@@ -1,0 +1,30 @@
+# Env and secrets
+.env
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and local state
+dine_trade/logs/*.log
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build / dist
+build/
+dist/
+*.egg-info/
+*.egg

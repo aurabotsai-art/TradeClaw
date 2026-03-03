@@ -1,0 +1,58 @@
+/* TradeClaw — exact Claude dark theme + TradeClaw orange (UI-0.1) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Backgrounds — exact Claude dark values */
+  --bg-base:     #1a1a1a;   /* Main background */
+  --bg-raised:   #222222;   /* Sidebar, panels */
+  --bg-overlay:  #2a2a2a;   /* Cards, input */
+  --bg-hover:    #333333;   /* Hover states */
+
+  /* Borders */
+  --border-subtle:  #333333;
+  --border-default: #404040;
+
+  /* Text */
+  --text-primary:   #ececec;
+  --text-secondary: #9b9b9b;
+  --text-muted:     #666666;
+
+  /* TradeClaw Brand — orange accent (replaces Claude's salmon) */
+  --accent:         #ff6b35;
+  --accent-hover:   #ff8c5a;
+  --accent-glow:    rgba(255, 107, 53, 0.15);
+
+  /* Semantic */
+  --green:  #4ade80;
+  --red:    #f87171;
+  --yellow: #fbbf24;
+  --blue:   #60a5fa;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Syne', sans-serif;  /* TradeClaw brand headings */
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--bg-base)] text-[var(--text-primary)];
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  .animate-slide-in-left {
+    animation: slide-in-left 0.2s ease-out forwards;
+  }
+}

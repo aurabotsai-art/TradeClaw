@@ -1,0 +1,57 @@
+{
+  "title": "DineTrade - System Health Dashboard",
+  "timezone": "browser",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "WebSocket Reconnects by Stream",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "sum(rate(ws_reconnect_total[5m])) by (stream)",
+          "legendFormat": "{{stream}}"
+        }
+      ]
+    },
+    {
+      "type": "histogram",
+      "title": "Agent Response Times (seconds)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(agent_latency_seconds_bucket[5m])) by (le, agent_name))",
+          "legendFormat": "{{agent_name}}"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Redis Queue Depth (custom metric)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "redis_queue_depth",
+          "legendFormat": "queue"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "API Call Rate vs Rate Limits",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "rate(api_calls_total[1m])",
+          "legendFormat": "API calls / s"
+        },
+        {
+          "expr": "api_rate_limit",
+          "legendFormat": "Rate limit"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 38,
+  "version": 1
+}
+

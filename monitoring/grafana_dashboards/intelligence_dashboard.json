@@ -1,0 +1,53 @@
+{
+  "title": "DineTrade - Intelligence Dashboard",
+  "timezone": "browser",
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Sentiment Score Trend (last 7 days)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "sentiment_score",
+          "legendFormat": "{{symbol}}"
+        }
+      ]
+    },
+    {
+      "type": "bargauge",
+      "title": "News Volume per Symbol",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "sum(increase(news_events_total[24h])) by (symbol)",
+          "legendFormat": "{{symbol}}"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Recent SEC Filings Flagged",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "sec_filings_flagged_total",
+          "legendFormat": "{{symbol}} {{form_type}}"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Whale Print Alerts",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "whale_prints_total",
+          "legendFormat": "{{symbol}}"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 38,
+  "version": 1
+}
+
